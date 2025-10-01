@@ -9,19 +9,19 @@ y estos ya existen-->
 function calcular_resultado($op1,$op2,$op) //Creacion de la funcion,No es necesario ponerle el tipo del valor a la variable ni el valor de retorno(el que va a devolver)
 //Tenemos que evitar la repeticion de codigo
 {
-switch ($op) {
-case '+':$res = $op1 + $op2;
-break;
-case '-':$res = $op1 - $op2;
-break;
-case '*': $res = $op1 * $op2;
-break;
-case '/': $res = $op1 / $op2;
-break;
-default:
-$res = null;
-}
-return $res;
+    switch ($op) {
+        case '+':$res = $op1 + $op2;
+            break;
+        case '-':$res = $op1 - $op2;
+            break;
+        case '*': $res = $op1 * $op2;
+            break;
+        case '/': $res = $op1 / $op2;
+            break;
+        default:
+            $res = null;
+    }
+    return $res;
 }
 
 //Validacion del tipo de numero  que lo recoge del campo 
@@ -36,15 +36,16 @@ return $res;
  */
 function obtener_get ($parametro)
 {
-return isset($_GET[$parametro]) ? trim($_GET[$parametro]) :  null;
+    return isset($_GET[$parametro]) ? trim($_GET[$parametro]) :  null;
 }
 
 function mostrar_error ()
-{
-echo "<h3>El operador  es incorrecto.</h3>";
+{   //Eliminar los echos y ponerlo boniot con el <?php>
+    echo "<h3>El operador  es incorrecto.</h3>";
 }
 
 function mostrar_resultado ($op1,$op,$op2,$res)
+    //Eliminar los echos y ponerlo boniot con el <?php>
 {
-echo "<h3>El Resultado de  $op1  $op  $op2  es  $res </h3>";
+    echo "<h3>El Resultado de  $op1  $op  $op2  es  $res </h3>";
 }

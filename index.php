@@ -10,6 +10,8 @@
     La primera vez que iniciamos el codigo no  hay datos  y luego vuelve a tomar los datos 
     y estos ya existen-->
     <?php
+        // en este punto del programa tiene que irse al fichero nombreado recorrerlo 
+        require 'auxiliar.php';
 
         $op1 = obtener_get('op1');
         $op2 = obtener_get('op2');
