@@ -34,18 +34,15 @@ function calcular_resultado($op1,$op2,$op) //Creacion de la funcion,No es necesa
  * Obtiene el valor  recogido por GET de un parámetro de la peticio.
  * Devuelve null si el paámetro no existe.
  */
-function obtener_get ($parametro)
-{
-    return isset($_GET[$parametro]) ? trim($_GET[$parametro]) :  null;
+
+function obtener_get($parametro) {
+    return isset($_GET[$parametro]) ? trim($_GET[$parametro]) : null;
 }
 
-function mostrar_error ()
-{   //Eliminar los echos y ponerlo boniot con el <?php>
-    echo "<h3>El operador  es incorrecto.</h3>";
-}
+function mostrar_error() { ?>
+    <h3>El operador es incorrecto</h3>
+<?php }
 
-function mostrar_resultado ($op1,$op,$op2,$res)
-    //Eliminar los echos y ponerlo boniot con el <?php>
-{
-    echo "<h3>El Resultado de  $op1  $op  $op2  es  $res </h3>";
-}
+function mostrar_resultado($op1, $op, $op2, $res) { ?>
+    <h3>El Resultado de <?= $op1 . " " . $op . " " . $op2 ?> es <?= $res ?></h3>
+    <?php } ?>
