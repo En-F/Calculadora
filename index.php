@@ -18,10 +18,7 @@
         $op2 = obtener_get('op2');
         $op =  obtener_get('op');
         
-        $error = [];
-
-
-    ?>
+        ?>
     <form action="" method="get"><!-- Podemos dejar el campo vacia .Es mas recomendable-->
         <label for="op1">Primer operando<sup>*</sup>:</label>
         <input id="op1" type="text" name="op1">
@@ -48,30 +45,18 @@
     //Compreba que existen los datos necesarios para las operaciones
     //Devulve true cuando la variable existe y no es nulo
     if (isset($op1, $op2, $op)) {// si no es la primera vez que entra
+        $error = [];
         //empy(sirve para comprobar si esta vacio)
-        if( empty($op1)){
-            $error['op1'] = 'El primero Operando es obligatorio';
-        }  else if (!is_numeric($op1))  {   
-                $error['op1'] =  'El primero operando no es un numero válido';
-        }
-        if( empty($op2)){
-            $error['op2'] = 'El Segundo Operando es obligatorio';
-        }  else if (!is_numeric($op2))  {   
-            $error['op2'] =  'El segundo operando no es un numero válido';
-        }
-        if( empty($op)){
-            $error['op'] = 'La operación  es obligatoria';
-        }  else if (!in_array($op,OPS))  {   
-            $error['op'] =  'La operacion es incorrecta';
-        }
-
+        validar_op1($op1,$error);
+        validar_op2($op2,$error);
+        validar_op($op,$error);
         if (empty($error)) {
-            $res = calcular_resultado($op1,$op2,$op); 
-            mostrar_resultado($op1,$op,$op2,$res);
+            $res = calcular_resultado($op1, $op2, $op);
+            mostrar_resultado($op1, $op2, $op,$res);
         } else {
             mostrar_errores($error);
         }
-    } 
+    }
     ?>
 </body>
 </html>

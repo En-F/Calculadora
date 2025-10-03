@@ -46,9 +46,9 @@ function obtener_get ($parametro)
 
 function mostrar_errores($error)
 { 
-    foreach ($error as $mensaje){
-        echo "<h3>Error:$mensaje</h3>";
-    }    
+    foreach ($error as $mensaje){ ?>
+        <h3>Error: <?=$mensaje?> </h3>
+    <?php }    
 }
 
 
@@ -56,10 +56,26 @@ function mostrar_resultado($op1, $op, $op2, $res) { ?>
     <h3>El Resultado de <?= "$op1  $op  $op2" ?> es <?= $res ?></h3>
 <?php } 
 
-function validar_op1 ($op1,$error) {
+function validar_op1 ($op1,&$error) {
     if( empty($op1)){
             $error['op1'] = 'El primero Operando es obligatorio';
         }  else if (!is_numeric($op1))  {   
                 $error['op1'] =  'El primero operando no es un numero válido';
+        }
+}
+
+function validar_op2 ($op2,&$error) {
+    if( empty($op2)){
+            $error['op2'] = 'El primero Operando es obligatorio';
+        }  else if (!is_numeric($op2))  {   
+                $error['op2'] =  'El primero operando no es un numero válido';
+        }
+}
+
+function validar_op ($op,&$error) {
+    if( empty($op)){
+            $error['op'] = 'El primero Operando es obligatorio';
+        }  else if (!is_numeric($op))  {   
+                $error['op'] =  'El primero operando no es un numero válido';
         }
 }
