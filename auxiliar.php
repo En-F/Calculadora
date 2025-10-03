@@ -55,3 +55,11 @@ function mostrar_errores($error)
 function mostrar_resultado($op1, $op, $op2, $res) { ?>
     <h3>El Resultado de <?= "$op1  $op  $op2" ?> es <?= $res ?></h3>
 <?php } 
+
+function validar_op1 ($op1,$error) {
+    if( empty($op1)){
+            $error['op1'] = 'El primero Operando es obligatorio';
+        }  else if (!is_numeric($op1))  {   
+                $error['op1'] =  'El primero operando no es un numero válido';
+        }
+}
