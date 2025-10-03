@@ -16,7 +16,7 @@ const OPS = ['+' => 'Suma',
  * Calcula el resultado de la operación definida en $op
  * sobre los operandos $op1 y $op2 
  */
-function calcular_resultado($op1,$op2,$op) //Creacion de la funcion,No es necesario ponerle el tipo del valor a la variable ni el valor de retorno(el que va a devolver)
+function calcular_resultado(string $op1, string $op2, string $op): int|float //Creacion de la funcion,No es necesario ponerle el tipo del valor a la variable ni el valor de retorno(el que va a devolver)
 //Tenemos que evitar la repeticion de codigo
 {
     switch ($op) {
@@ -42,12 +42,12 @@ function calcular_resultado($op1,$op2,$op) //Creacion de la funcion,No es necesa
  * Obtiene el valor  recogido por GET de un parámetro de la peticio.
  * Devuelve null si el paámetro no existe.
  */
-function obtener_get ($parametro)
+function obtener_get (string $parametro): string|null
 {
     return isset($_GET[$parametro]) ? trim($_GET[$parametro]) :  null;
 }
 
-function mostrar_errores($error)
+function mostrar_errores(array $error) 
 { 
     foreach ($error as $mensaje){ ?>
         <h3>Error: <?=$mensaje?> </h3>
@@ -55,11 +55,11 @@ function mostrar_errores($error)
 }
 
 
-function mostrar_resultado($op1, $op2, $op, $res) { ?>
+function mostrar_resultado(string $op1,string  $op2,string  $op, int|float $res) { ?>
     <h3>El Resultado de <?= "$op1  $op  $op2" ?> es <?= $res ?></h3>
 <?php } 
 
-function validar_op1 ($op1,&$error) {
+function validar_op1 (string $op1,array &$error): void {
     if( empty($op1)){
             $error['op1'] = 'El primero Operando es obligatorio';
         }  else if (!is_numeric($op1))  {   
@@ -67,7 +67,7 @@ function validar_op1 ($op1,&$error) {
         }
 }
 
-function validar_op2 ($op2,&$error) {
+function validar_op2 (string $op2,array &$error) :void{
     if( empty($op2)){
             $error['op2'] = 'El primero Operando es obligatorio';
         }  else if (!is_numeric($op2))  {   
@@ -75,7 +75,7 @@ function validar_op2 ($op2,&$error) {
         }
 }
 
-function validar_op ($op,&$error) {
+function validar_op (string $op,array&$error) :void{
     if( empty($op)){
             $error['op'] = 'El primero Operando es obligatorio';
         }  else if (!key_exists($op,OPS))  {   
@@ -84,14 +84,12 @@ function validar_op ($op,&$error) {
 }
 
 
-
-
-function selected($op,$v) 
+function selected(string $op,string $v) :string 
 {
     return $op == $v ? 'selected': '';
 }
 
-function dibujar_formulario ( $op1,$op2,$op)
+function dibujar_formulario ( string $op1, string $op2, string $op): void
 {
 ?>
     <form action="" method="get"><!-- Podemos dejar el campo vacia .Es mas recomendable-->
@@ -104,9 +102,7 @@ function dibujar_formulario ( $op1,$op2,$op)
         <br>
         <label for="op">Operando<sup>*</sup>:</label>
         <select name="op" id="od"> 
-            <!-- Esto es un desplegable, un option por cada
-            opción que yo quiero-->
-            
+           
         </select>
         <br>
         <button type="submit" >Calcular </button>

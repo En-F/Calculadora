@@ -6,9 +6,6 @@
     <title>Calculadora</title>
 </head>
 <body>
-    <!--Recogemos los datos y luego hacemos la operacion
-    La primera vez que iniciamos el codigo no  hay datos  y luego vuelve a tomar los datos 
-    y estos ya existen-->
     <?php
         // en este punto del programa tiene que irse al fichero nombreado recorrerlo 
         require 'auxiliar.php';
