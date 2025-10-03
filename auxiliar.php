@@ -4,7 +4,10 @@ y estos ya existen-->
 <?php
 
 //declarar una constante, el nombre tiene que estar en mayuscula
-const OPS = ['+','-','*','/'];
+const OPS = ['+' => 'Suma',
+            '-' => 'Resta',
+            '*' => 'Multiplicacion',
+            '/' => 'División'];
 //otra manera de crear una constante
 //define(('PI',3.14))
 
@@ -75,7 +78,38 @@ function validar_op2 ($op2,&$error) {
 function validar_op ($op,&$error) {
     if( empty($op)){
             $error['op'] = 'El primero Operando es obligatorio';
-        }  else if (!is_numeric($op))  {   
+        }  else if (!key_exists($op,OPS))  {   
                 $error['op'] =  'El primero operando no es un numero válido';
         }
+}
+
+
+
+
+function selected($op,$v) 
+{
+    return $op == $v ? 'selected': '';
+}
+
+function dibujar_formulario ( $op1,$op2,$op)
+{
+?>
+    <form action="" method="get"><!-- Podemos dejar el campo vacia .Es mas recomendable-->
+        <label for="op1">Primer operando<sup>*</sup>:</label>
+        <input id="op1" type="text" name="op1" value="<?= $op1?>">
+        <br>
+        <label for="op2">Segundo operando<sup>*</sup>:</label>
+        <!--El value es para el valor por defecto-->
+        <input id="op2" type="text" name="op2" value="<?= $op2?>">
+        <br>
+        <label for="op">Operando<sup>*</sup>:</label>
+        <select name="op" id="od"> 
+            <!-- Esto es un desplegable, un option por cada
+            opción que yo quiero-->
+            
+        </select>
+        <br>
+        <button type="submit" >Calcular </button>
+    </form>
+<?php 
 }

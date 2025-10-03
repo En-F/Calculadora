@@ -18,33 +18,8 @@
         $op2 = obtener_get('op2');
         $op =  obtener_get('op');
         
-        ?>
-    <form action="" method="get"><!-- Podemos dejar el campo vacia .Es mas recomendable-->
-        <label for="op1">Primer operando<sup>*</sup>:</label>
-        <input id="op1" type="text" name="op1" value="<?= $op1?>">
-        <br>
-        <label for="op2">Segundo operando<sup>*</sup>:</label>
-        <!--El value es para el valor por defecto-->
-        <input id="op2" type="text" name="op2" value="<?= $op2?>">
-        <br>
-        <label for="op">Operando<sup>*</sup>:</label>
-        <select name="op" id="od"> 
-            <!-- Esto es un desplegable, un option por cada
-            opción que yo quiero-->
-            <option value="+" <?=  $op == '+' ? 'selected': '' ?>>Suma</option>
-            <option value="-" <?=  $op == '-' ? 'selected': '' ?>>Resta</option>
-            <option value="*"  <?=  $op == '*' ? 'selected': '' ?>>Multiplicación</option>
-            <option value="/" <?=  $op == '/' ? 'selected': '' ?> >División</option>
-        </select>
-        <br>
-        <button type="submit" >Calcular </button>
-    </form>
+    dibujar_formulario($op1,$op2,$op);
     
-    <!-- si no es la primera vez entonces no se pinta nada,calcular res sino es nulo entonces,decir "opercion incorreta",sino decir res-->
-    <!--Debajo del form porque lo muestro debajo del formulario ,ESTO HACE REFERENCIA A EL BLOQUE A CONTINUACION--> 
-    <?php 
-    //Compreba que existen los datos necesarios para las operaciones
-    //Devulve true cuando la variable existe y no es nulo
     if (isset($op1, $op2, $op)) {// si no es la primera vez que entra
         $error = [];
         //empy(sirve para comprobar si esta vacio)
