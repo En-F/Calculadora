@@ -2,6 +2,13 @@
 La primera vez que iniciamos el codigo no  hay datos  y luego vuelve a tomar los datos 
 y estos ya existen-->
 <?php
+
+//declarar una constante, el nombre tiene que estar en mayuscula
+const OPS = ['+','-','*','/'];
+//otra manera de crear una constante
+//define(('PI',3.14))
+
+
 /**
  * Calcula el resultado de la operación definida en $op
  * sobre los operandos $op1 y $op2 
@@ -18,8 +25,6 @@ function calcular_resultado($op1,$op2,$op) //Creacion de la funcion,No es necesa
             break;
         case '/': $res = $op1 / $op2;
             break;
-        default:
-            $res = null;
     }
     return $res;
 }
@@ -39,13 +44,14 @@ function obtener_get ($parametro)
     return isset($_GET[$parametro]) ? trim($_GET[$parametro]) :  null;
 }
 
-function mostrar_error ()
-{   //Eliminar los echos y ponerlo boniot con el <?php>
-    echo "<h3>El operador  es incorrecto.</h3>";
+function mostrar_errores($error)
+{ 
+    foreach ($error as $mensaje){
+        echo "<h3>Error:$mensaje</h3>";
+    }    
 }
 
-function mostrar_resultado ($op1,$op,$op2,$res)
-    //Eliminar los echos y ponerlo boniot con el <?php>
-{
-    echo "<h3>El Resultado de  $op1  $op  $op2  es  $res </h3>";
-}
+
+function mostrar_resultado($op1, $op, $op2, $res) { ?>
+    <h3>El Resultado de <?= "$op1  $op  $op2" ?> es <?= $res ?></h3>
+<?php } 

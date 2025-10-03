@@ -12,11 +12,15 @@
     <?php
         // en este punto del programa tiene que irse al fichero nombreado recorrerlo 
         require 'auxiliar.php';
+        
 
         $op1 = obtener_get('op1');
         $op2 = obtener_get('op2');
         $op =  obtener_get('op');
         
+        $error = [];
+
+
     ?>
     <form action="" method="get"><!-- Podemos dejar el campo vacia .Es mas recomendable-->
         <label for="op1">Primer operando<sup>*</sup>:</label>
@@ -43,12 +47,29 @@
     <?php 
     //Compreba que existen los datos necesarios para las operaciones
     //Devulve true cuando la variable existe y no es nulo
-    if (isset($op1, $op2, $op)) {// si no es la primera vez que entra 
-        $res = calcular_resultado($op1,$op2,$op); 
-        if (!isset($res)) { // si la operacion es incorrecta
-           mostrar_error();
+    if (isset($op1, $op2, $op)) {// si no es la primera vez que entra
+        //empy(sirve para comprobar si esta vacio)
+        if( empty($op1)){
+            $error['op1'] = 'El primero Operando es obligatorio';
+        }  else if (!is_numeric($op1))  {   
+                $error['op1'] =  'El primero operando no es un numero válido';
+        }
+        if( empty($op2)){
+            $error['op2'] = 'El Segundo Operando es obligatorio';
+        }  else if (!is_numeric($op2))  {   
+            $error['op2'] =  'El segundo operando no es un numero válido';
+        }
+        if( empty($op)){
+            $error['op'] = 'La operación  es obligatoria';
+        }  else if (!in_array($op,OPS))  {   
+            $error['op'] =  'La operacion es incorrecta';
+        }
+
+        if (empty($error)) {
+            $res = calcular_resultado($op1,$op2,$op); 
+            mostrar_resultado($op1,$op,$op2,$res);
         } else {
-           mostrar_resultado($op1,$op,$op2,$res);
+            mostrar_errores($error);
         }
     } 
     ?>
