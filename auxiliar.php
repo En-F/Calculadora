@@ -52,7 +52,7 @@ function mostrar_errores($error)
 }
 
 
-function mostrar_resultado($op1, $op, $op2, $res) { ?>
+function mostrar_resultado($op1, $op2, $op, $res) { ?>
     <h3>El Resultado de <?= "$op1  $op  $op2" ?> es <?= $res ?></h3>
 <?php } 
 
