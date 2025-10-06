@@ -1,3 +1,4 @@
+<?php declare(strict_types=1)?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,8 @@
         require 'auxiliar.php';
         
 
+        // print_r($_GET);
+        // die();
         $op1 = obtener_get('op1');
         $op2 = obtener_get('op2');
         $op =  obtener_get('op');
