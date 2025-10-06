@@ -102,7 +102,9 @@ function dibujar_formulario ( string $op1, string $op2, string $op): void
         <br>
         <label for="op">Operando<sup>*</sup>:</label>
         <select name="op" id="od"> 
-           
+           <?php foreach (OPS as $k => $v): ?>
+                <option value="<?= $k ?>" <?= selected($op, $k) ?> ><?= $v ?></option>
+            <?php endforeach ?>
         </select>
         <br>
         <button type="submit" >Calcular </button>
